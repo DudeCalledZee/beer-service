@@ -1,6 +1,5 @@
 package com.bms.beerservice.web.controller;
 
-import com.bms.beerservice.bootstrap.BeerLoader;
 import com.bms.beerservice.services.BeerService;
 import com.bms.beerservice.web.model.BeerDto;
 import com.bms.beerservice.web.model.BeerStyleEnum;
@@ -65,7 +64,7 @@ class BeerControllerTest {
                                 fieldWithPath("createdDate").description("Created Date").type(OffsetDateTime.class),
                                 fieldWithPath("lastModifiedDate").description("Last Modified Date").type(OffsetDateTime.class),
                                 fieldWithPath("beerName").description("Name of Beer").type(String.class),
-                                fieldWithPath("beerType").description("Type of Beer").type(Enum.class),
+                                fieldWithPath("beerStyle").description("Style of Beer").type(Enum.class),
                                 fieldWithPath("upc").description("UPC of Beer").type(String.class),
                                 fieldWithPath("price").description("Price of Beer").type(BigDecimal.class),
                                 fieldWithPath("qualityOnHand").description("Quality On Hand").type(Integer.class))
@@ -90,7 +89,7 @@ class BeerControllerTest {
                                 fields.withPath("createdDate").ignored(),
                                 fields.withPath("lastModifiedDate").description("Last Modified Date"),
                                 fields.withPath("beerName").description("Name of Beer"),
-                                fields.withPath("beerType").description("Type of Beer"),
+                                fields.withPath("beerStyle").description("Style of Beer"),
                                 fields.withPath("upc").description("UPC of Beer"),
                                 fields.withPath("price").description("Price of Beer"),
                                 fields.withPath("qualityOnHand").ignored()
@@ -111,8 +110,8 @@ class BeerControllerTest {
     private BeerDto getValidBeerDto() {
         return BeerDto.builder()
                 .beerName("Thing")
-                .beerType(BeerStyleEnum.ALE)
-                .upc(BeerLoader.BEER_1_UPC)
+                .beerStyle(BeerStyleEnum.ALE)
+                .upc("1321654321")
                 .price(new BigDecimal("12.5"))
                 .build();
     }
