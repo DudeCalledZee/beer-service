@@ -1,5 +1,6 @@
 package com.bms.beerservice.web.controller;
 
+import com.bms.beerservice.domain.Beer;
 import com.bms.beerservice.services.BeerService;
 import com.bms.beerservice.web.model.BeerDto;
 import com.bms.beerservice.web.model.BeerPageList;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/beer")
+@RequestMapping("/api/v1/")
 @RestController
 public class BeerController {
 
@@ -22,6 +23,13 @@ public class BeerController {
     public static final Integer DEFAULT_PAGE_SIZE = 25;
 
     private final BeerService beerService;
+
+    @GetMapping("/beerUpc/{upc}")
+    public ResponseEntity<BeerDto> getBeerByUPC(@PathVariable(value = "upc") String upc) {
+
+        return new ResponseEntity(beerService.getBeerByUpc(upc), HttpStatus.OK);
+
+    }
 
     @GetMapping
     public ResponseEntity<BeerPageList> listBeers(@RequestParam(value = "pageNumber", required = false) Integer pageNumber,
@@ -64,7 +72,7 @@ public class BeerController {
         return new ResponseEntity(beerService.saveNewBeer(beerDto), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{beerId}")
+    @PutMapping("/beer/{beerId}")
     public ResponseEntity updateBeerById(@PathVariable("beerId") UUID beerId, @RequestBody @Validated BeerDto beerDto) {
 
         return new ResponseEntity(beerService.updateBeer(beerId, beerDto), HttpStatus.NO_CONTENT);
