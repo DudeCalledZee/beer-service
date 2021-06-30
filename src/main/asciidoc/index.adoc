@@ -10,20 +10,48 @@ Sample application demonstration hot to use Spring REST docs with JUnit 5.
 
 One showing how to make a request using cURL:
 
-include::{snippets}/orders/curl-request.adoc[]
+include::{snippets}/v1/beer-get/curl-request.adoc[]
 
 One showing the HTTP request:
 
-include::{snippets}/orders/http-request.adoc[]
+include::{snippets}/v1/beer-get/http-request.adoc[]
 
 One showing the HTTP response:
 
-include::{snippets}/orders/http-response.adoc[]
+include::{snippets}/v1/beer-get/http-response.adoc[]
 
 One showing the response body:
 
-include::{snippets}/orders/response-body.adoc[]
+include::{snippets}/v1/beer-get/response-body.adoc[]
 
 One showing the response fields:
 
-include::{snippets}/orders/response-fields.adoc[]
+include::{snippets}/v1/beer-get/response-fields.adoc[]
+
+NEW BEER
+
+One showing how to make a request using cURL:
+
+include::{snippets}/v1/beer-new/curl-request.adoc[]
+
+One showing the HTTP request:
+
+include::{snippets}/v1/beer-new/http-request.adoc[]
+
+One showing the HTTP response:
+
+include::{snippets}/v1/beer-new/http-response.adoc[]
+
+One showing the response body:
+
+include::{snippets}/v1/beer-new/response-body.adoc[]
+
+One showing the response fields:
+
+include::{snippets}/v1/beer-new/response-fields.adoc[]
+
+one showing request fields:
+include::{snippets}/v1/beer-new/request-fields.adoc[]
+
+Response Fields:
+include::{snippets}
