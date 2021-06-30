@@ -1,5 +1,7 @@
 package com.bms.beerservice.web.controller;
 
+import com.bms.beerservice.bootstrap.BeerLoader;
+import com.bms.beerservice.services.BeerService;
 import com.bms.beerservice.web.model.BeerDto;
 import com.bms.beerservice.web.model.BeerStyleEnum;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.restdocs.constraints.ConstraintDescriptions;
@@ -19,6 +22,8 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
@@ -34,11 +39,17 @@ class BeerControllerTest {
     @Autowired
     MockMvc mockMvc;
 
+    @MockBean
+    BeerService beerService;
+
     @Autowired
     ObjectMapper objectMapper;
 
     @Test
     void getBeerById() throws Exception {
+
+        given(beerService.getById(any())).willReturn(getValidBeerDto());
+
         mockMvc.perform(get("/api/v1/beer/{beerId}", UUID.randomUUID())
                 .param("isCold", "yes")
                 .accept(MediaType.APPLICATION_JSON))
@@ -55,7 +66,7 @@ class BeerControllerTest {
                                 fieldWithPath("lastModifiedDate").description("Last Modified Date").type(OffsetDateTime.class),
                                 fieldWithPath("beerName").description("Name of Beer").type(String.class),
                                 fieldWithPath("beerStyle").description("Style of Beer").type(Enum.class),
-                                fieldWithPath("upc").description("UPC of Beer").type(Long.class),
+                                fieldWithPath("upc").description("UPC of Beer").type(String.class),
                                 fieldWithPath("price").description("Price of Beer").type(BigDecimal.class),
                                 fieldWithPath("qualityOnHand").description("Quality On Hand").type(Integer.class))
                 ));
@@ -101,7 +112,7 @@ class BeerControllerTest {
         return BeerDto.builder()
                 .beerName("Thing")
                 .beerStyle(BeerStyleEnum.ALE)
-                .upc(1354L)
+                .upc(BeerLoader.BEER_1_UPC)
                 .price(new BigDecimal("12.5"))
                 .build();
     }
