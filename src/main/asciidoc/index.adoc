@@ -46,10 +46,6 @@ One showing the response body:
 
 include::{snippets}/v1/beer-new/response-body.adoc[]
 
-One showing the response fields:
-
-include::{snippets}/v1/beer-new/response-fields.adoc[]
-
 one showing request fields:
 include::{snippets}/v1/beer-new/request-fields.adoc[]
 

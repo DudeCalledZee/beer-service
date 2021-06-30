@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -48,15 +49,15 @@ class BeerControllerTest {
                         requestParameters(
                                 parameterWithName("isCold").description("Is Beer Cold Query param")),
                         responseFields(
-                                fieldWithPath("id").description("Id of Beer"),
-                                fieldWithPath("version").description("Version"),
-                                fieldWithPath("createdDate").description("Created Date"),
-                                fieldWithPath("lastModifiedDate").description("Last Modified Date"),
-                                fieldWithPath("beerName").description("Name of Beer"),
-                                fieldWithPath("beerStyle").description("Style of Beer"),
-                                fieldWithPath("upc").description("UPC of Beer"),
-                                fieldWithPath("price").description("Price of Beer"),
-                                fieldWithPath("qualityOnHand").description("Quality On Hand"))
+                                fieldWithPath("id").description("Id of Beer").type(UUID.class),
+                                fieldWithPath("version").description("Version").type(Integer.class),
+                                fieldWithPath("createdDate").description("Created Date").type(OffsetDateTime.class),
+                                fieldWithPath("lastModifiedDate").description("Last Modified Date").type(OffsetDateTime.class),
+                                fieldWithPath("beerName").description("Name of Beer").type(String.class),
+                                fieldWithPath("beerStyle").description("Style of Beer").type(Enum.class),
+                                fieldWithPath("upc").description("UPC of Beer").type(Long.class),
+                                fieldWithPath("price").description("Price of Beer").type(BigDecimal.class),
+                                fieldWithPath("qualityOnHand").description("Quality On Hand").type(Integer.class))
                 ));
     }
 
