@@ -1,4 +1,4 @@
-package com.bms.beerservice.services;
+package com.bms.beerservice.services.brewing;
 
 import com.bms.beerservice.config.JmsConfig;
 import com.bms.beerservice.domain.Beer;
