@@ -1,17 +1,18 @@
 package com.bms.beerservice.events;
 
 import com.bms.beerservice.web.model.BeerDto;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Data
-public class BeerEvent implements Serializable {
+public class BeerEvent {
 
-    public final BeerDto beerDto;
-    private final long serialVersionUID = -6143299848725299705L;
+    private BeerDto beerDto;
 }

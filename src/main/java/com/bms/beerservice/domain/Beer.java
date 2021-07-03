@@ -32,6 +32,7 @@ public class Beer {
     private Timestamp createdDate;
 
     private Timestamp lastModifiedDate;
+
     private String beerName;
     private String beerStyle;
 
@@ -39,6 +40,7 @@ public class Beer {
     private String upc;
 
     private BigDecimal price;
+
     private Integer minOnHand;
     private Integer quantityToBrew;
 }
